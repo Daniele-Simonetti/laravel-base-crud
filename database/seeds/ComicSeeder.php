@@ -22,6 +22,7 @@ class ComicSeeder extends Seeder
             $newComic->series = $faker->words(3, true);
             $newComic->type = $faker->words(1, true);
             $newComic->sale_date = $faker->date();
+            $newComic->save();
         }
     }
 }
