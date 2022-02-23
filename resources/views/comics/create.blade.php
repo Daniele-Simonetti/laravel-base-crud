@@ -12,12 +12,12 @@
               <input type="text" class="form-control" id="title" name="title">
             </div>
             <div class="mb-3">
-              <label for="description" class="form-label">description</label>
-              <input type="text" class="form-control" id="description" name="description">
+              <label for="thmb" class="form-label">thumb</label>
+              <input type="form-control" class="form-control" id="thumb" name="thumb">
             </div>
             <div class="mb-3">
-                <label for="thumb" class="form-label">thumb</label>
-                <textarea class="form-control" id="thumb" name="thumb" rows="3"></textarea>
+                <label for="description" class="form-label">description</label>
+                <textarea class="form-control" id="description" name="description"></textarea>
             </div>
             <div class="mb-3">
               <label for="price" class="form-label">price</label>
@@ -33,7 +33,7 @@
             </div>
             <div class="mb-3">
               <label for="sale_date" class="form-label">sale date</label>
-              <input type="number" class="form-control" id="sale_date" name="sale_date">
+              <input type="date" class="form-control" id="sale_date" name="sale_date">
             </div>
             
             <button type="submit" class="btn btn-primary">Save</button>
