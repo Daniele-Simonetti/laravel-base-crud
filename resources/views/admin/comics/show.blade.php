@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col text-center">
           <h1>{{ $comic->title }}</h1>
         </div>
       </div>
@@ -12,25 +12,27 @@
           <img class="fluid-img" src="{{ $comic->thumb }}" alt="{{$comic->title}}">
         </div>
         <div class="col">
-          <div>
-            <h2>Description:</h2>
+          <div class="mt-5">
+            <h2 class="text-center">Description:</h2>
             <p>
               {{ $comic->description }}
             </p>
-            <h3>Realease date: {{ $comic->sale_date }}</h3>
+            <div class="text-center">
+              <h2>{{ $comic->price }}€</h2>
+            </div>
           </div>
-          <div><h2>{{ $comic->price }}€</h2></div>
+          <div class="my-5">
+            <h3>Type: {{ $comic->type }}</h3>
+            <h3>Serie: {{ $comic->series }}</h3>
+          </div>
           <div>
-            <ul>
-              <li>Type: {{ $comic->type }}</li>
-              <li>Serie: {{ $comic->series }}</li>
-            </ul>
+            <h3>Realease date: {{ $comic->sale_date }}</h3>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <a class="btn btn-primary" href="{{ route('comics.index') }}">Back to All</a>
+          <a class="btn btn-primary mt-4" href="{{ route('comics.index') }}">Back to All</a>
         </div>
       </div>
     </div>

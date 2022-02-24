@@ -3,7 +3,10 @@
 @section('content')
     <div class="container">
       <div class="row">
-        <h1 class="h1">Admin Section</h1>
+        <div class="col text-center">
+
+          <h1 class="h1">Admin Section</h1>
+        </div>
       </div>
       <div class="row">
         <div class="col">
@@ -12,9 +15,9 @@
       </div>
       <div class="row">
         <div class="col">
-          <table class="table table-primary">
+          <table class="table table-light mt-3 table-bordered border-primary">
             <thead>
-              <tr class="table-primary">
+              <tr class="table-primary text-center">
                 <th>Title</th>
                 <th>Series</th>
                 <th>Type</th>
@@ -24,15 +27,15 @@
             </thead>
             <tbody>
               @foreach ($comics as $comic)
-                  <tr>
+                  <tr class="text-center table-secondary">
                     <td>{{ $comic->title }}</td>
                     <td>{{ $comic->series }}</td>
                     <td>{{ $comic->type }}</td>
                     <td>{{ $comic->sale_date }}</td>
                     <td>{{ $comic->price }} €</td>
-                    <td>
-                      <a class="btn btn-primary" href="{{ route('comics.show', $comic) }}">View</a>
-                      <a class="btn btn-primary" href="{{ route('comics.edit', $comic) }}">Edit</a>
+                    <td class="text-center table-info">
+                      <a class="btn btn-info" href="{{ route('comics.show', $comic) }}">View</a>
+                      <a class="btn btn-warning" href="{{ route('comics.edit', $comic) }}">Edit</a>
                     </td>
                   </tr>
               @endforeach
