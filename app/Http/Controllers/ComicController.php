@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class ComicController extends Controller
 {
+
+    protected $ruleValidation = [
+        'title' => 'required|max:100',
+        'description' => 'required',
+        'thumb' => 'required',
+        'price' => 'required',
+        'series' => 'required|max:150',
+        'type' => 'required|max:150',
+        'sale_date' => 'required',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -39,23 +49,25 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $saveData = $request->all();
-        $comic = new Comic();
-        $comic->title = $saveData['title'];
-        $comic->description = $saveData['description'];
-        $comic->thumb = $saveData['thumb'];
-        $comic->price = $saveData['price'];
-        $comic->series = $saveData['series'];
-        $comic->type = $saveData['type'];
-        $comic->sale_date = $saveData['sale_date'];
+        $validateData = $request->validate($this->ruleValidation);
 
-        $save = $comic->save();
+        $saveData = $request->all();
+        $newComic = new Comic();
+        $newComic->title = $saveData['title'];
+        $newComic->description = $saveData['description'];
+        $newComic->thumb = $saveData['thumb'];
+        $newComic->price = $saveData['price'];
+        $newComic->series = $saveData['series'];
+        $newComic->type = $saveData['type'];
+        $newComic->sale_date = $saveData['sale_date'];
+
+        $save = $newComic->save();
 
         if (!$save) {
             dd('salvataggio non riuscito');
         }
 
-        return redirect()->route('admin.comics.show', $comic->id);
+        return redirect()->route('admin.comics.show', $newComic->id);
     }
 
     /**
@@ -92,11 +104,9 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+        $validateData = $request->validate($this->ruleValidation);
         $data = $request->all();
-        $updated = $comic->update($data);
-        if (!$updated) {
-            dd('update non riuscito');
-        }
+        $comic->update($data);
         return redirect()->route('comics.show', $comic->id);
     }
 
@@ -108,6 +118,7 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('comics.index')->with('status', "Comic $comic->id deleted!");
     }
 }
